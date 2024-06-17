@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { FaUser } from "react-icons/fa";
+import { FaLaptop } from "react-icons/fa";
+import { IoMdSettings } from "react-icons/io";
 
 interface Employee {
   id: number;
@@ -28,7 +31,7 @@ const PaginatedEmployees: React.FC = () => {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/employees`, {
+      const response = await axios.get(`http://localhost:5000/api/employees`, {
         params: {
           page: currentPage,
           pageSize: pageSize,
@@ -48,29 +51,39 @@ const PaginatedEmployees: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto py-8 overflow-x-auto">
-      <nav className="flex space-y-4">
-        <Link
-          to="/register"
-          className="text-white text-lg py-2 px-4 bg-[#667EEA] hover:bg-indigo-800 transition duration-300 w-full mb-8"
-        >
-          Add New Employee
-        </Link>
-      </nav>
-      <table className="w-full table-fixed max-w-full">
+    <div className="flex gap-4">
+      <div className="w-[20rem] p-4 h-screen bg-[#667EEA] flex flex-col items-start">
+        <span className="text-2xl text-white font-bold text-startflex ">MIS</span>
+<div className="h-[45px] w-full cursor-pointer bg-[white] rounded-md mt-10 flex items-center px-4 gap-4">
+<FaUser color="#667EEA"/>
+  <span className="text-[#667EEA]">Employees</span>
+</div>
+<div className="h-[40px] w-full cursor-pointer rounded-md mt-10 flex items-center px-4 gap-4">
+<FaLaptop color="white" />
+  <span className="text-white">Laptops</span>
+</div>
+<div className="h-[40px] w-full cursor-pointer rounded-md mt-10 flex items-center px-4 gap-4">
+<IoMdSettings color="white"/>
+  <span className="text-white">Settings</span>
+</div>
+      </div>
+      <div className="flex flex-col items-end flex-grow gap-4 py-4 px-4">
+     <button className="h-[50px] w-[10rem] bg-[#667EEA] hover:bg-indigo-800 rounded-md text-white">Add Employee</button>
+      <div className="max-w-full overflow-x-scroll">
+      <table className="border-collapse">
         <thead>
           <tr className="bg-[#667EEA] hover:bg-indigo-800 text-white">
-            <th className="w-1/12 py-2 px-4">ID</th>
-            <th className="w-1/6 py-2 px-4">Firstname</th>
-            <th className="w-1/6 py-2 px-4">Lastname</th>
-            <th className="w-1/6 py-2 px-4">National Identity</th>
-            <th className="w-1/6 py-2 px-4">Telephone</th>
-            <th className="w-[35%] py-2 px-4">Email</th>
-            <th className="w-1/6 py-2 px-4">Department</th>
-            <th className="w-1/6 py-2 px-4">Position</th>
-            <th className="w-1/6 py-2 px-4">Laptop Manufacturer</th>
-            <th className="w-1/6 py-2 px-4">Model</th>
-            <th className="w-1/6 py-2 px-4">Serial Number</th>
+            <th className="p-4 text-left text-nowrap">ID</th>
+            <th className="p-4 text-left text-nowrap">Firstname</th>
+            <th className="p-4 text-left text-nowrap">Lastname</th>
+            <th className="p-4 text-left text-nowrap">National Identity</th>
+            <th className="p-4 text-left text-nowrap">Telephone</th>
+            <th className="p-4 text-left text-nowrap">Email</th>
+            <th className="p-4 text-left text-nowrap">Department</th>
+            <th className="p-4 text-left text-nowrap">Position</th>
+            <th className="p-4 text-left text-nowrap">Laptop Manufacturer</th>
+            <th className="p-4 text-left text-nowrap">Model</th>
+            <th className="p-4 text-left text-nowrap">Serial Number</th>
           </tr>
         </thead>
         <tbody>
@@ -91,8 +104,11 @@ const PaginatedEmployees: React.FC = () => {
           ))}
         </tbody>
       </table>
+      </div>
+     
       {/* Pagination */}
-      <div className="flex justify-center mt-4">
+      <div className="w-full flex justify-center">
+      <div className="">
         {Array.from(Array(totalPages).keys()).map((page) => (
           <button
             key={page}
@@ -107,6 +123,9 @@ const PaginatedEmployees: React.FC = () => {
           </button>
         ))}
       </div>
+      </div>
+      
+      </div> 
     </div>
   );
 };

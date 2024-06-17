@@ -3,10 +3,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { setAuthorizationHeader } from "../../lib/utils";
 
-interface Login {
-//   email: string;
-//   password: string;
-}
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -25,7 +21,7 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:4000/api/sign-in", {
+      const response = await axios.post("http://localhost:5000/api/sign-in", {
         email,
         password,
       });
@@ -57,7 +53,7 @@ const Login: React.FC = () => {
           <input
             type="text"
             placeholder="Email"
-            className="py-2 px-4 border-none bg-[#EDF2F7] w-full mb-8"
+            className="py-2 px-4 border-none bg-[#EDF2F7] w-full mb-8 outline-none"
             value={email}
             onChange={handleEmailChange}
             
@@ -65,7 +61,7 @@ const Login: React.FC = () => {
           <input
             type="password"
             placeholder="Password"
-            className="py-2 border-none px-4 bg-[#EDF2F7] w-full mb-8"
+            className="py-2 border-none px-4 bg-[#EDF2F7] w-full mb-8 outline-none"
             value={password}
             onChange={handlePasswordChange}
           />
