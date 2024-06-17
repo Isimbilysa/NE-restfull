@@ -1,0 +1,1 @@
+https://medium.com/@kizito917/sign-up-and-login-implementation-with-jwt-in-node-js-using-postgres-and-sequelize-7093491b080f
