@@ -14,19 +14,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Employee.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+    },
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
-    nationalIdentity: DataTypes.STRING,
+    nationalId: DataTypes.STRING,
     telephone: DataTypes.STRING,
     email: DataTypes.STRING,
     department: DataTypes.STRING,
     position: DataTypes.STRING,
     laptopManufacturer: DataTypes.STRING,
     model: DataTypes.STRING,
-    serialNumber: DataTypes.STRING
+    serialnumber: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Employee',
+    freezeTableName: true,
+    tableName: 'Employee',
+    
   });
   return Employee;
 };
+
+
+
+
+

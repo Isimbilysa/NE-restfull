@@ -1,10 +1,12 @@
 const db = require("../models/index");
+const {v4} = require("uuid");
 
 const createEmployee = async(req, res) => {
     try{
         const {firstname, lastname, nationalIdentity, telephone, email, department, position, laptopManufacturer, model, serialNumber} = req.body;
 
         const newEmployee = await db.Employee.create({
+            id: v4(),
             firstname,
             lastname, 
             nationalIdentity,
@@ -17,7 +19,7 @@ const createEmployee = async(req, res) => {
             serialNumber
         });
 
-        return res.status(200).json({message: "Employee createsuccessfully"});
+        return res.status(200).json({message: "Employee createsuccessfully", newEmployee});
     } catch(error) {
         console.error("Error in creating employee: ", error);
         return res.status(500).json({error: "Error in creating employee"});

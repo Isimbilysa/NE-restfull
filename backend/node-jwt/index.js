@@ -5,6 +5,8 @@ const swaggerUI = require("swagger-ui-express"); // Import Swagger UI
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerSpec = require("./swagger.yaml");
 
+
+
 const swaggerDefinition = {
   openapi: "3.0.0",
   info: {
@@ -23,6 +25,13 @@ dotenv.config();
 
 const port = process.env.PORT;
 const app = express();
+
+app.use((req,res,next) => {
+  res.append("Access-Control-Allow-Origin", "*");
+  res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.append("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+})
 
 const authRoute = require("./Routes/auth.route");
 const jwtSecret = process.env.JWT_SECRET;
