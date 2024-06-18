@@ -1,15 +1,15 @@
-const db = require("../models/index");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const User = require("../models/user");
 
 const registerUser = async (req, res) => {
   try {
     const { firstName, lastName, email, password } = req.body;
 
     // Check if the email already exists
-    const userExists = await db.User.findOne({
+    const userExists = await User.findOne({
       where: { email },
-      attributes: ['id', 'firstName', 'lastName', 'email', 'password', 'updatedAt']
+      attributes: ['id', 'firstName', 'lastName', 'email', 'password']
     });
     if (userExists) {
       return res
@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user
-    await db.User.create({
+    await User.create({
       firstName,
       lastName,
       email,
@@ -38,7 +38,7 @@ const signInUser = async (req, res) => {
     const { email, password } = req.body;
 
     // Find the user by email
-    const user = await db.User.findOne({
+    const user = await User.findOne({
       where: { email },
     });
 

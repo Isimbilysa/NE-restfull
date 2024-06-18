@@ -1,8 +1,10 @@
 const jwt = require("jsonwebtoken");
 const db = require("../models/index");
+const User = require("../models/user");
 
 const authMiddleware = async (req, res, next) => {
   const token = req.headers.authorization.split(" ")[1];
+  console.log('token', token);
 
   if (!token) {
     return res.status(401).json({ error: "Authorization token is missing" });
@@ -11,9 +13,9 @@ const authMiddleware = async (req, res, next) => {
   try {
     // Verify the token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
+    console.log('dec', decoded);
     // Fetch the user from the database using the decoded ID
-    const user = await db.User.findByPk(decoded.id);
+    const user = await User.findByPk(decoded.id);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });

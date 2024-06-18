@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { getAuthorizationHeader } from "../../lib/utils";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/employees", formData, {headers: getAuthorizationHeader()});
+      await axios.post("http://localhost:5000/api/sign-up", formData, {headers: getAuthorizationHeader()});
       console.log("Form submitted successfully!");
       // Optionally, reset form fields after submission
       setFormData({
@@ -32,7 +33,7 @@ const Register: React.FC = () => {
         email: "",
         password: "",
       });
-      navigate("/success")
+      navigate("/login")
     } catch (error: any) {
       console.log("Error submitting form:", error);
     }
@@ -87,6 +88,8 @@ const Register: React.FC = () => {
         >
           Register
         </button>
+        already have an account ?
+       <Link to='/login' className="text-[#68c8f5]">login</Link> 
       </form>
     </div>
   );

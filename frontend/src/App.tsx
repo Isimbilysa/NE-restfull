@@ -6,7 +6,7 @@ import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import PaginatedBooks from "./components/Books/PaginatedBooks"
 import Home from "./components/home/Home";
-import SucessMessage from "./components/home/SuccessMessage";
+// import SucessMessage from "./components/home/SuccessMessage";
 
 function App() {
   return (
@@ -14,10 +14,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/home" Component={Home} />
-          <Route path="/register" Component={Register} />
+          <Route path="/" Component={Register} />
+          
+          <Route path="/login" Component={Login}/>
           <Route path="/books" Component={PaginatedBooks} />
-          <Route path="/" Component={Login}/>
-          <Route path="/success" Component={SucessMessage}/>
+          {/* <Route path="/success" Component={SucessMessage}/> */}
         </Routes>
       </BrowserRouter>
     </div>

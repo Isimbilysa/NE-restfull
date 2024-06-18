@@ -1,11 +1,11 @@
-const db = require("../models/index");
+const Book = require("../models/book");
 const {v4} = require("uuid");
 
 const createBook = async(req, res) => {
     try{
         const {name, author, publisher, publicationYear, subject} = req.body;
 
-        const newBook = await db.Book.create({
+        const newBook = await Book.create({
             id: v4(),
             name,
             author,
@@ -29,7 +29,7 @@ const getAllBooks = async (req, res) => {
     const limit = parseInt(pageSize, 10) || 10;
     const offset = (pageNumber - 1) * limit;
 
-    const { count, rows } = await db.Book.findAndCountAll({
+    const { count, rows } = await Book.findAndCountAll({
       limit,
       offset,
     });

@@ -15,10 +15,10 @@ const SucessMessage: React.FC = () => {
           Add New
         </Link> */}
         <Link
-          to="/employees"
+          to="/books"
           className="text-white text-lg py-2 px-4 bg-[#667EEA] rounded-md hover:bg-indigo-600 transition duration-300"
         >
-          Display All Employees
+          Display All Books
         </Link>
       </nav>
     </div>

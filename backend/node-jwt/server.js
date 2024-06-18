@@ -34,6 +34,7 @@ app.use((req,res,next) => {
 })
 
 const authRoute = require("./Routes/routes");
+const sequelize = require("./models");
 const jwtSecret = process.env.JWT_SECRET;
 
 app.use(express.json());
@@ -44,9 +45,10 @@ app.use("/api", authRoute);
 // Serve Swagger documentation
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-app.listen(port, (err) => {
+app.listen(port, async (err) => {
   if (err) {
     process.exit();
   }
+  await sequelize.sync();
   console.log(`Server is running on port ${port}`);
 });
