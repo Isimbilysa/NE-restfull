@@ -43,8 +43,8 @@ const Login: React.FC = () => {
 
   return (
     <div className="w-[50vw] flex flex-col justify-between h-fit mx-auto">
-      <h1 className="text-[#667EEA] font-bold mt-12">
-        EQUIPMENT DEVELOPMENT SYSTEM
+      <h1 className="text-[#68c8f5] font-bold mt-12">
+        RWANDA CODING ACADEMY LIBRARY-MIS
       </h1>
       <div className="shadow-lg p-8 mt-12">
         <h2 className="font-bold mb-8">LOGIN</h2>
@@ -65,7 +65,7 @@ const Login: React.FC = () => {
             value={password}
             onChange={handlePasswordChange}
           />
-          <button className="border w-full py-2 px-4 text-white bg-[#667EEA]" type="submit">
+          <button className="border w-full py-2 px-4 text-white bg-[#68c8f5]" type="submit">
             {" "}
             Login
           </button>

@@ -33,7 +33,7 @@ app.use((req,res,next) => {
   next();
 })
 
-const authRoute = require("./Routes/auth.route");
+const authRoute = require("./Routes/routes");
 const jwtSecret = process.env.JWT_SECRET;
 
 app.use(express.json());
